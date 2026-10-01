@@ -2,234 +2,70 @@
 <html lang="en">
 
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Library</title>
-
-  <link rel="stylesheet" href="styles.css" />
-
-  <script
-    src="https://kit.fontawesome.com/3ade8a26c6.js"
-    crossorigin="anonymous"
-  ></script>
-
+  <link rel="stylesheet" href="styles.css">
+  <!-- UPDATE: using css version of font awesome so no need for kit -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <script src="index.js" defer></script>
+  <script src="books.js" defer></script>
 </head>
 
-<body>
-  <div class="books__loading home__loading" id="home-loading" role="status" hidden>
-    <span class="books__loading--spinner" aria-hidden="true"></span>
-    <p>Loading Library...</p>
-  </div>
-  <div id="home-content">
-
-  <!-- LANDING -->
-  <section id="landing">
-
-    <!-- NAVIGATION -->
+<body id="books__body">
+  <section>
     <nav>
       <div class="nav__container">
-
-        <a href="#">
-          <img
-            class="logo"
-            src="./assets/Library.svg"
-            alt="Library logo"
-          />
-        </a>
-
+        <a href="index.html"><img class="logo" src="assets/Library.svg" alt="Library logo"></a>
         <ul class="nav__links">
-          <li>
-            <a href="#" class="nav__link">Home</a>
-          </li>
-
-          <li>
-            <span class="nav__link no-cursor">Contact</span>
-          </li>
-
-          <li>
-            <a
-              href="books.html"
-              class="nav__link nav__link--primary"
-            >
-              Books
-            </a>
-          </li>
+          <li><a href="index.html" class="nav__link">Home</a></li>
+          <li><span class="nav__link no-cursor">Contact</span></li>
+          <li><a href="books.html" class="nav__link nav__link--primary" aria-current="page">Books</a></li>
         </ul>
-
-        <!-- MOBILE MENU BUTTON -->
-        <button
-          class="btn__menu"
-          onclick="openMenu()"
-          aria-label="Open navigation menu"
-        >
-          <i class="fa-solid fa-bars"></i>
+        <button class="btn__menu" onclick="openMenu()" aria-label="Open navigation menu">
+          <i class="fas fa-bars"></i>
         </button>
-
-        <!-- MOBILE MENU -->
         <div class="menu__backdrop">
-
-          <button
-            class="btn__menu btn__menu--close"
-            onclick="closeMenu()"
-            aria-label="Close menu"
-          >
-            <i class="fa-solid fa-xmark"></i>
+          <button class="btn__menu btn__menu--close" onclick="closeMenu()" aria-label="Close menu">
+            <i class="fas fa-times"></i>
           </button>
-
           <ul class="menu__links">
-
             <li class="menu__list">
-              <a
-                href="#"
-                class="menu__link"
-                onclick="closeMenu()"
-              >
-                Home
-              </a>
+              <a href="index.html" class="menu__link" onclick="closeMenu()">Home</a>
             </li>
-
             <li class="menu__list">
-              <a
-                href="books.html"
-                class="menu__link"
-                onclick="closeMenu()"
-              >
-                Books
-              </a>
+              <a href="books.html" class="menu__link" onclick="closeMenu()">Books</a>
             </li>
-
             <li class="menu__list">
-              <a class="menu__link no-cursor">
-                Contact
-              </a>
+              <a class="menu__link no-cursor" onclick="closeMenu()">Contacts</a>
             </li>
-
           </ul>
         </div>
-
       </div>
     </nav>
-
-    <!-- HEADER -->
-    <header>
-      <div class="header__container">
-
-        <div class="header__description">
-
-          <h1>
-            United States' most awarded online library platform
-          </h1>
-
-          <h2>
-            Find your dream book with
-            <span class="purple">Library</span>
-          </h2>
-
-          <a href="books.html" class="btn">
-            Browse books
-          </a>
-
-        </div>
-
-        <figure class="header__img--wrapper">
-          <img
-            src="./assets/Undraw_Books.svg"
-            alt="Person reading a book"
-          />
-        </figure>
-
-      </div>
-    </header>
-
   </section>
 
-
-  <main>
-
-    <!-- HIGHLIGHTS -->
-    <section id="highlights">
+  <main id="books__main">
+    <section>
       <div class="container">
         <div class="row">
-
-          <h2 class="section__title">
-            Why choose
-            <span class="purple">Library?</span>
-          </h2>
-
-          <div class="highlight__wrapper">
-
-            <div class="highlight">
-
-              <div class="highlight__img">
-                <i class="fa-solid fa-bolt-lightning"></i>
-              </div>
-
-              <h3 class="highlight__subtitle">
-                Easy and Quick
-              </h3>
-
-              <p class="highlight__para">
-                Get access to the book you purchased online instantly.
-              </p>
-
-            </div>
-
-
-            <div class="highlight">
-
-              <div class="highlight__img">
-                <i class="fa-solid fa-book-open"></i>
-              </div>
-
-              <h3 class="highlight__subtitle">
-                10,000+ Books
-              </h3>
-
-              <p class="highlight__para">
-                Library has books in all your favorite categories.
-              </p>
-
-            </div>
-
-
-            <div class="highlight">
-
-              <div class="highlight__img">
-                <i class="fa-solid fa-tags"></i>
-              </div>
-
-              <h3 class="highlight__subtitle">
-                Affordable
-              </h3>
-
-              <p class="highlight__para">
-                Get your hands on popular books for as little as $10.
-              </p>
-
-            </div>
-
+          <div class="books__header">
+            <h2 class="section__title books__header--title">All <span class="purple">Books</span>
+            </h2>
+            <select id="filter" aria-label="Sort books">
+              <option value="" disabled selected>Sort by</option>
+              <option value="price-low">Price: Low to High</option>
+              <option value="price-high">Price: High to Low</option>
+              <option value="rating">Rating</option>
+            </select>
           </div>
-
-        </div>
-      </div>
-    </section>
-
-
-    <!-- FEATURED BOOKS -->
-    <section id="features">
-      <div class="container">
-        <div class="row">
-
-          <h2 class="section__title">
-            Featured <span class="purple">Books</span>
-          </h2>
-
-          <div class="books">
-
-            <!-- BOOK 1 -->
-            <div class="book" data-price="31.87" data-rating="4.5">
+          <div class="books__loading" id="books-loading" role="status" hidden>
+            <span class="books__loading--spinner" aria-hidden="true"></span>
+            <p>Loading books...</p>
+          </div>
+          <div class="books" id="books-list">
+<div class="book" data-price="31.87" data-rating="4.5">
 
               <figure class="book__img--wrapper">
                 <img
@@ -256,10 +92,7 @@
               </div>
 
             </div>
-
-
-            <!-- BOOK 2 -->
-            <div class="book" data-price="20.85" data-rating="5">
+<div class="book" data-price="20.85" data-rating="5">
 
               <figure class="book__img--wrapper">
                 <img
@@ -286,10 +119,7 @@
               </div>
 
             </div>
-
-
-            <!-- BOOK 3 -->
-            <div class="book" data-price="14.83" data-rating="3.5">
+<div class="book" data-price="14.83" data-rating="3.5">
 
               <figure class="book__img--wrapper">
                 <img
@@ -316,10 +146,7 @@
               </div>
 
             </div>
-
-
-            <!-- BOOK 4 -->
-            <div class="book" data-price="35.96" data-rating="4">
+<div class="book" data-price="35.96" data-rating="4">
 
               <figure class="book__img--wrapper">
                 <img
@@ -346,25 +173,7 @@
               </div>
 
             </div>
-
-          </div>
-        </div>
-      </div>
-    </section>
-
-
-    <!-- LATEST BOOKS -->
-    <section id="recent">
-      <div class="container">
-        <div class="row">
-
-          <h2 class="section__title">
-            Latest <span class="purple">Books</span>
-          </h2>
-
-          <div class="books">
-
-            <div class="book" data-price="35.95" data-rating="5">
+<div class="book" data-price="35.95" data-rating="5">
               <figure class="book__img--wrapper">
                 <img
                   class="book__img"
@@ -389,9 +198,7 @@
                 $35.95
               </div>
             </div>
-
-
-            <div class="book" data-price="25.95" data-rating="4">
+<div class="book" data-price="25.95" data-rating="4">
               <figure class="book__img--wrapper">
                 <img
                   class="book__img"
@@ -416,9 +223,7 @@
                 $25.95
               </div>
             </div>
-
-
-            <div class="book" data-price="51.95" data-rating="3.5">
+<div class="book" data-price="51.95" data-rating="3.5">
               <figure class="book__img--wrapper">
                 <img
                   class="book__img"
@@ -443,9 +248,7 @@
                 $51.95
               </div>
             </div>
-
-
-            <div class="book" data-price="28.95" data-rating="4">
+<div class="book" data-price="28.95" data-rating="4">
               <figure class="book__img--wrapper">
                 <img
                   class="book__img"
@@ -470,9 +273,7 @@
                 $28.95
               </div>
             </div>
-
-
-            <div class="book" data-price="32.95" data-rating="3.5">
+<div class="book" data-price="32.95" data-rating="3.5">
               <figure class="book__img--wrapper">
                 <img
                   class="book__img"
@@ -497,9 +298,7 @@
                 $32.95
               </div>
             </div>
-
-
-            <div class="book" data-price="41.95" data-rating="3.5">
+<div class="book" data-price="41.95" data-rating="3.5">
               <figure class="book__img--wrapper">
                 <img
                   class="book__img"
@@ -524,9 +323,7 @@
                 $41.95
               </div>
             </div>
-
-
-            <div class="book" data-price="38.95" data-rating="3">
+<div class="book" data-price="38.95" data-rating="3">
               <figure class="book__img--wrapper">
                 <img
                   class="book__img"
@@ -551,9 +348,7 @@
                 $38.95
               </div>
             </div>
-
-
-            <div class="book" data-price="49.95" data-rating="4">
+<div class="book" data-price="49.95" data-rating="4">
               <figure class="book__img--wrapper">
                 <img
                   class="book__img"
@@ -578,86 +373,30 @@
                 $49.95
               </div>
             </div>
-
           </div>
         </div>
       </div>
     </section>
-
-
-    <!-- EXPLORE -->
-    <section id="explore">
-      <div class="header__container">
-        <div class="header__description">
-
-          <h2>
-            Explore more <span class="purple">Books</span>
-          </h2>
-
-          <a href="books.html" class="btn">
-            Browse books
-          </a>
-
-        </div>
-      </div>
-    </section>
-
   </main>
 
-
-  <!-- FOOTER -->
   <footer>
     <div class="container">
       <div class="row row__column">
-
-        <a href="#">
+        <a href="index.html">
           <figure class="footer__logo">
-            <img
-              src="./assets/Library.svg"
-              class="footer__logo--img"
-              alt="Library logo"
-            />
+            <img src="assets/Library.svg" class="footer__logo--img" alt="Library logo">
           </figure>
         </a>
-
         <div class="footer__list">
-
-          <a
-            href="#"
-            class="footer__link nav__link"
-          >
-            Home
-          </a>
-
-          <a
-            class="footer__link no-cursor nav__link"
-          >
-            About
-          </a>
-
-          <a
-            href="books.html"
-            class="footer__link nav__link"
-          >
-            Books
-          </a>
-
-          <a
-            class="footer__link no-cursor nav__link"
-          >
-            Contact
-          </a>
-
+          <a href="index.html" class="footer__link nav__link">Home</a>
+          <a class="footer__link no-cursor nav__link">About</a>
+          <a href="books.html" class="footer__link nav__link">Books</a>
+          <a class="footer__link no-cursor nav__link">Contact</a>
         </div>
-
-        <div class="footer__copyright">
-          Copyright &copy; 2026 Library
-        </div>
-
+        <div class="footer__copyright">Copyright &copy; 2026 Library</div>
       </div>
     </div>
   </footer>
-  </div>
-
 </body>
+
 </html>
